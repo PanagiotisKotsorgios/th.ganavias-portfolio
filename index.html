@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Θεοφάνης Γκαναβίας — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg:          #F5F4F0;
+      --surface:     #FFFFFF;
+      --surface-2:   #ECEAE4;
+      --navy:        #0C1F35;
+      --navy-mid:    #1A4B82;
+      --blue:        #2258B8;
+      --blue-light:  #3A7BD5;
+      --gold:        #8A6D28;
+      --gold-light:  #BA9640;
+      --text:        #18202E;
+      --text-mid:    #374054;
+      --text-muted:  #6B7180;
+      --border:      #C8C3B5;
+      --border-soft: #DEDAD2;
+      --shadow-sm:   0 1px 3px rgba(12,31,53,0.08), 0 1px 2px rgba(12,31,53,0.05);
+      --shadow:      0 2px 8px rgba(12,31,53,0.08), 0 4px 16px rgba(12,31,53,0.05);
+      --shadow-md:   0 4px 12px rgba(12,31,53,0.10), 0 8px 28px rgba(12,31,53,0.08);
+      --shadow-lg:   0 8px 20px rgba(12,31,53,0.13), 0 16px 48px rgba(12,31,53,0.10);
+      --radius:      5px;
+      --radius-md:   10px;
+      --transition:  0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'IBM Plex Sans', Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+    h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.02em; }
+    h3 { font-weight: 600; }
+
+    p { font-size: 1rem; color: var(--text-mid); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--navy); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+
+    /* ── FA ICON HELPERS ── */
+    .icon-box {
+      width: 42px; height: 42px; border-radius: var(--radius);
+      background: rgba(26,75,130,0.09);
+      border: 1px solid rgba(26,75,130,0.14);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--navy-mid); font-size: 1rem;
+    }
+    .icon-box-sm {
+      width: 30px; height: 30px; border-radius: var(--radius);
+      background: rgba(26,75,130,0.09);
+      border: 1px solid rgba(26,75,130,0.14);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--navy-mid); font-size: 0.82rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(245,244,240,0.94);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1.5px solid var(--border-soft);
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+    nav.scrolled {
+      box-shadow: var(--shadow);
+      border-color: var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px; max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    }
+    .nav-brand {
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.76rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+      position: relative; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--navy-mid); border-radius: 2px;
+      transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 114px; padding-bottom: 5.5rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: 0; right: 0; width: 48%; height: 100%;
+      background: linear-gradient(135deg, rgba(26,75,130,0.04) 0%, rgba(58,123,213,0.06) 100%);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center; position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 2px;
+      background: var(--gold); border-radius: 2px;
+    }
+    .hero-name { margin-bottom: 0.8rem; }
+    .hero-titles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .title-badge {
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--navy-mid); background: rgba(26,75,130,0.07);
+      padding: 0.32em 0.9em; border-radius: 100px;
+      border: 1.5px solid rgba(26,75,130,0.18);
+    }
+    .hero-desc {
+      font-size: 1.02rem; line-height: 1.75; color: var(--text-mid);
+      max-width: 540px; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.02em; padding: 0.65em 1.6em; border-radius: var(--radius);
+      transition: all var(--transition); cursor: pointer; border: none; text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--navy); color: white;
+      box-shadow: 0 2px 8px rgba(12,31,53,0.22);
+    }
+    .btn-primary:hover {
+      background: var(--navy-mid); color: white;
+      transform: translateY(-2px); box-shadow: 0 6px 20px rgba(12,31,53,0.28);
+    }
+    .btn-outline {
+      background: var(--surface); color: var(--navy);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-outline:hover {
+      border-color: var(--navy-mid); color: var(--navy);
+      background: rgba(26,75,130,0.04);
+      transform: translateY(-2px); box-shadow: var(--shadow);
+    }
+
+    /* Profile picture */
+    .hero-photo { position: relative; flex-shrink: 0; }
+    .photo-frame { position: relative; width: 230px; height: 230px; }
+    .photo-frame::before {
+      content: ''; position: absolute; inset: -9px; border-radius: 50%;
+      border: 1.5px solid rgba(186,150,64,0.5);
+    }
+    .photo-frame::after {
+      content: ''; position: absolute; inset: -20px; border-radius: 50%;
+      border: 1px dashed rgba(26,75,130,0.2);
+    }
+    .photo-frame img {
+      width: 230px; height: 230px; border-radius: 50%;
+      object-fit: cover; object-position: center top; display: block;
+      box-shadow: 0 8px 36px rgba(12,31,53,0.2), 0 2px 8px rgba(12,31,53,0.12);
+      border: 3px solid var(--surface);
+    }
+    .photo-placeholder {
+      width: 230px; height: 230px; border-radius: 50%;
+      background: linear-gradient(140deg, var(--navy) 0%, var(--navy-mid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 36px rgba(12,31,53,0.2);
+      border: 3px solid var(--surface);
+    }
+    .photo-placeholder span {
+      font-size: 3rem; font-weight: 700; color: rgba(255,255,255,0.9);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { margin-bottom: 2.75rem; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem;
+    }
+    .section-tag::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--blue); border-radius: 2px;
+    }
+    .section-title { color: var(--navy); letter-spacing: -0.02em; }
+    .section-divider {
+      width: 44px; height: 3px; margin-top: 0.7rem; border-radius: 2px;
+      background: linear-gradient(to right, var(--navy-mid), var(--blue-light));
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); border-top: 1.5px solid var(--border-soft); border-bottom: 1.5px solid var(--border-soft); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { font-size: 1rem; line-height: 1.78; }
+    .about-text p + p { margin-top: 0.9rem; }
+    .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+    .highlight-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.1rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .highlight-item:hover {
+      border-color: var(--navy-mid);
+      box-shadow: var(--shadow);
+      transform: translateX(3px);
+    }
+    .highlight-content h4 { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 0.15rem; }
+    .highlight-content p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.45; }
+
+    /* ── EDUCATION ── */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.5rem; }
+    .edu-card {
+      position: relative; padding: 1.6rem;
+      background: var(--surface); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); box-shadow: var(--shadow);
+      transition: all var(--transition); overflow: hidden;
+    }
+    .edu-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--blue-light) 100%);
+    }
+    .edu-card:hover {
+      border-color: var(--navy-mid);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .edu-degree { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; }
+    .edu-institution { font-size: 0.88rem; color: var(--navy-mid); font-weight: 500; margin-bottom: 0.6rem; line-height: 1.45; }
+    .edu-meta { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+    .edu-year { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+    .edu-grade {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.76rem; font-weight: 700;
+      background: rgba(138,109,40,0.1); color: var(--gold);
+      padding: 0.22em 0.7em; border-radius: 100px;
+      border: 1.5px solid rgba(138,109,40,0.22);
+    }
+    .edu-detail { font-size: 0.87rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--surface); border-top: 1.5px solid var(--border-soft); border-bottom: 1.5px solid var(--border-soft); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 1.25rem; }
+    .cert-card {
+      position: relative; overflow: hidden;
+      background: var(--bg); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .cert-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    }
+    .cert-card:hover {
+      border-color: var(--navy-mid);
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); background: rgba(138,109,40,0.1);
+      padding: 0.28em 0.75em; border-radius: 100px; margin-bottom: 0.75rem;
+      border: 1.5px solid rgba(138,109,40,0.22);
+    }
+    .cert-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .cert-detail { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; }
+    .cert-subjects { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .cert-subject { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; }
+    .cert-subject::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 0.45em; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-card {
+      background: var(--surface); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); padding: 2.25rem;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+      transition: all var(--transition);
+    }
+    .pub-card:hover { border-color: var(--navy-mid); box-shadow: var(--shadow-md); }
+    .pub-card::before {
+      content: '\201C'; position: absolute; top: -10px; left: 20px;
+      font-size: 7rem; line-height: 1;
+      color: rgba(26,75,130,0.06); pointer-events: none;
+      font-family: Georgia, serif; font-weight: 700;
+    }
+    .pub-type {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+    }
+    .pub-title {
+      font-size: 1.22rem; font-weight: 600; color: var(--navy);
+      font-style: italic; margin-bottom: 0.75rem; line-height: 1.45;
+    }
+    .pub-meta { font-size: 0.91rem; color: var(--text-muted); line-height: 1.6; }
+    .pub-isbn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; color: var(--text-muted); background: var(--surface-2);
+      padding: 0.28em 0.75em; border-radius: var(--radius); margin-top: 0.75rem;
+      font-family: monospace; letter-spacing: 0.04em;
+      border: 1px solid var(--border-soft);
+    }
+
+    /* ── RESEARCH ── */
+    #research { background: var(--surface); border-top: 1.5px solid var(--border-soft); border-bottom: 1.5px solid var(--border-soft); }
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.25rem; }
+    .research-item {
+      padding: 1.5rem; background: var(--bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      transition: all var(--transition); position: relative; overflow: hidden;
+    }
+    .research-item::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--navy-mid), var(--blue-light));
+      transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+    }
+    .research-item:hover {
+      border-color: var(--blue-light);
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .research-item:hover::after { transform: scaleX(1); }
+    .research-num {
+      font-size: 1.7rem; font-weight: 800;
+      color: rgba(26,75,130,0.1); line-height: 1; margin-bottom: 0.45rem;
+      letter-spacing: -0.04em;
+    }
+    .research-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.45rem; }
+    .research-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 2.25rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 3px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border); border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative; padding-bottom: 2.25rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2.25rem; top: 5px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--navy-mid); border: 2.5px solid var(--bg);
+      box-shadow: 0 0 0 1.5px var(--navy-mid);
+      transform: translateX(-2px);
+    }
+    .timeline-dot.active {
+      background: var(--gold);
+      border-color: var(--bg);
+      box-shadow: 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(138,109,40,0.18);
+    }
+    .timeline-period {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem;
+    }
+    .timeline-period.current { color: var(--gold); }
+    .timeline-title { font-size: 1.08rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+    .timeline-org { font-size: 0.88rem; color: var(--navy-mid); font-weight: 500; margin-bottom: 0.55rem; }
+    .timeline-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .timeline-desc p + p { margin-top: 0.3rem; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+    .tag {
+      font-size: 0.74rem; font-weight: 600; color: var(--navy-mid);
+      background: rgba(26,75,130,0.07); padding: 0.22em 0.7em;
+      border-radius: 100px; border: 1.5px solid rgba(26,75,130,0.15);
+    }
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .exp-section-label {
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 1.75rem; padding-bottom: 0.7rem;
+      border-bottom: 2px solid var(--border-soft);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px,1fr)); gap: 1.4rem; }
+    .skill-group {
+      background: var(--surface); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); padding: 1.4rem;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .skill-group:hover {
+      border-color: var(--border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .skill-group-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--navy-mid); margin-bottom: 1rem;
+      padding-bottom: 0.7rem; border-bottom: 1.5px solid var(--border-soft);
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-chip {
+      font-size: 0.88rem; font-weight: 500; color: var(--text-mid);
+      background: var(--bg); border: 1.5px solid var(--border-soft);
+      padding: 0.28em 0.75em; border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .skill-chip:hover {
+      border-color: var(--navy-mid); color: var(--navy);
+      background: rgba(26,75,130,0.05);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; }
+    .lang-item {
+      display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem;
+      background: var(--surface); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .lang-item:hover { border-color: var(--border); box-shadow: var(--shadow); }
+    .lang-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(26,75,130,0.09); border: 1.5px solid rgba(26,75,130,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy-mid); font-size: 0.95rem; flex-shrink: 0;
+    }
+    .lang-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .lang-level { font-size: 0.82rem; color: var(--text-muted); }
+
+    .other-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px,1fr)); gap: 0.85rem; margin-top: 1.4rem; }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface); border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      font-size: 0.9rem; color: var(--text-mid);
+      transition: all var(--transition);
+    }
+    .info-item:hover { border-color: var(--border); box-shadow: var(--shadow); }
+    .info-item .icon-box-sm { margin-top: 1px; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); color: white; padding: 5rem 0; }
+    #contact .section-tag { color: var(--gold-light); }
+    #contact .section-tag::before { background: var(--gold-light); }
+    #contact .section-title { color: white; }
+    #contact .section-divider { background: linear-gradient(to right, var(--gold-light), transparent); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-desc { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-top: 0.9rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.25rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.4rem;
+      background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md); transition: all var(--transition); color: white; text-decoration: none;
+    }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25);
+      color: white; transform: translateX(5px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .contact-link-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; color: rgba(255,255,255,0.85);
+    }
+    .contact-link-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.42); margin-bottom: 0.12rem;
+    }
+    .contact-link-value { font-size: 1rem; font-weight: 600; color: white; }
+
+    /* ── FOOTER ── */
+    footer { background: #060F1B; padding: 1.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+    /* ── ANIMATIONS ── */
+    .animate-in { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .animate-in.visible { opacity: 1; transform: translateY(0); }
+    .stagger > * { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.07s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.14s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.21s; }
+    .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.28s; }
+    .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.35s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .exp-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+    }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo { order: -1; display: flex; justify-content: center; }
+      .hero-eyebrow, .hero-titles, .hero-actions { justify-content: center; }
+      .hero-desc { margin: 0 auto 1.75rem; }
+      .nav-links {
+        display: none; position: absolute; top: 62px; left: 0; right: 0;
+        background: rgba(245,244,240,0.98); border-bottom: 1.5px solid var(--border);
+        padding: 1.4rem 2rem; flex-direction: column; gap: 1.1rem;
+        backdrop-filter: blur(14px);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 1.25rem; }
+      section { padding: 3.5rem 0; }
+      .photo-frame, .photo-frame img, .photo-placeholder { width: 180px; height: 180px; }
+      .photo-placeholder span { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-brand">Θ. Γκαναβίας</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Προφίλ</a></li>
+        <li><a href="#education">Εκπαίδευση</a></li>
+        <li><a href="#certifications">Πιστοποιήσεις</a></li>
+        <li><a href="#publications">Δημοσιεύσεις</a></li>
+        <li><a href="#experience">Εμπειρία</a></li>
+        <li><a href="#skills">Δεξιότητες</a></li>
+        <li><a href="#contact">Επικοινωνία</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Μενού">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Portfolio</span>
+          <h1 class="hero-name">Θεοφάνης<br>Γκαναβίας</h1>
+          <div class="hero-titles">
+            <span class="title-badge"><i class="fa-solid fa-chalkboard-user" style="font-size:0.7rem;margin-right:0.2rem;"></i>Καθηγητής Πληροφορικής</span>
+            <span class="title-badge"><i class="fa-solid fa-users" style="font-size:0.7rem;margin-right:0.2rem;"></i>Εκπαιδευτής Ενηλίκων</span>
+            <span class="title-badge"><i class="fa-solid fa-building-columns" style="font-size:0.7rem;margin-right:0.2rem;"></i>Στέλεχος Δημόσιας Διοίκησης</span>
+          </div>
+          <p class="hero-desc">
+            Εκπαιδευτικός Πληροφορικής με Μεταπτυχιακό από το Πανεπιστήμιο Ιωαννίνων, πολυετή
+            διδακτική εμπειρία στη δευτεροβάθμια εκπαίδευση και εκπαίδευση ενηλίκων, με
+            ερευνητικά ενδιαφέροντα σε αλγορίθμους κατανομής πόρων, θεωρία παιγνίων και Τεχνητή Νοημοσύνη.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fa-solid fa-envelope"></i> Επικοινωνία
+            </a>
+            <a href="#about" class="btn btn-outline">
+              <i class="fa-solid fa-user"></i> Δείτε το Προφίλ
+            </a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="photo-frame">
+            <img src="image.jpg" alt="Θεοφάνης Γκαναβίας"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="photo-placeholder" style="display:none;">
+              <span>ΘΓ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Συνοπτικό Προφίλ</span>
+        <h2 class="section-title">Για τον Θεοφάνη</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text animate-in">
+          <p>Κάτοχος Μεταπτυχιακού Διπλώματος Ειδίκευσης στην Πληροφορική και τα Δίκτυα (Πανεπιστήμιο Ιωαννίνων) και πτυχιούχος Εφαρμογών Πληροφορικής στη Διοίκηση και την Οικονομία, με παιδαγωγική και διδακτική επάρκεια (ΕΠΠΑΙΚ – ΑΣΠΑΙΤΕ).</p>
+          <p>Εκπαιδευτικός Πληροφορικής (ΑΣΕΠ) με πολυετή διδακτική εμπειρία στη δευτεροβάθμια εκπαίδευση και στην εκπαίδευση ενηλίκων, ενταγμένος στα Μητρώα Εκπαιδευτών του ΕΚΔΔΑ, των ΣΑΕΚ και των ΣΔΕ.</p>
+          <p>Διαθέτω σημαντική τεχνική εμπειρία σε δίκτυα, συστήματα και ανάπτυξη εφαρμογών. Τα ερευνητικά ενδιαφέροντα εστιάζουν στους αλγορίθμους κατανομής πόρων, στη θεωρία παιγνίων και τη βελτιστοποίηση με κριτήρια κοινωνικής πρόνοιας και δικαιοσύνης, καθώς και στην εφαρμογή τεχνητής νοημοσύνης, με σχετική δημοσίευση σε διεθνές συνέδριο.</p>
+        </div>
+        <div class="about-highlights stagger">
+          <div class="highlight-item">
+            <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="highlight-content">
+              <h4>Ακαδημαϊκό Υπόβαθρο</h4>
+              <p>MSc Πληροφορική &amp; Δίκτυα, Πανεπιστήμιο Ιωαννίνων</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+            <div class="highlight-content">
+              <h4>Εκπαιδευτική Εμπειρία</h4>
+              <p>10+ έτη διδασκαλίας · 1.000+ διδακτικές ώρες ενηλίκων</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="icon-box"><i class="fa-solid fa-flask"></i></div>
+            <div class="highlight-content">
+              <h4>Έρευνα &amp; Δημοσιεύσεις</h4>
+              <p>Δημοσίευση σε διεθνές συνέδριο (ΕΕΠΕΚ 2025)</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="icon-box"><i class="fa-solid fa-landmark"></i></div>
+            <div class="highlight-content">
+              <h4>Δημόσια Διοίκηση</h4>
+              <p>Μέλος Μητρώου ΕΚΔΔΑ · Στέλεχος ΕΟΔΥ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Εκπαίδευση</span>
+        <h2 class="section-title">Ακαδημαϊκό Ιστορικό</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="edu-grid stagger">
+
+        <div class="edu-card">
+          <div class="edu-degree">Μεταπτυχιακό Δίπλωμα Ειδίκευσης</div>
+          <div class="edu-institution">Πληροφορική και Δίκτυα — Πανεπιστήμιο Ιωαννίνων, Τμήμα Πληροφορικής και Τηλεπικοινωνιών</div>
+          <div class="edu-meta">
+            <span class="edu-year"><i class="fa-regular fa-calendar" style="margin-right:0.25rem;"></i>2026</span>
+            <span class="edu-grade"><i class="fa-solid fa-star" style="font-size:0.68rem;"></i>Βαθμός: 7,87</span>
+          </div>
+          <p class="edu-detail">Μεταπτυχιακές σπουδές με έμφαση στα δίκτυα, αλγορίθμους και κατανεμημένα συστήματα.</p>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-degree">ΕΠΠΑΙΚ — Παιδαγωγική Κατάρτιση</div>
+          <div class="edu-institution">ΑΣΠΑΙΤΕ — Ανώτατη Σχολή Παιδαγωγικής &amp; Τεχνολογικής Εκπαίδευσης</div>
+          <div class="edu-meta">
+            <span class="edu-grade" style="background:rgba(26,75,130,0.08);color:var(--navy-mid);border-color:rgba(26,75,130,0.18);">
+              <i class="fa-solid fa-certificate" style="font-size:0.68rem;"></i>Παιδαγωγική &amp; Διδακτική Επάρκεια
+            </span>
+          </div>
+          <p class="edu-detail">Ετήσιο πρόγραμμα παιδαγωγικής κατάρτισης για εκπαιδευτικούς τεχνολογικής κατεύθυνσης.</p>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-degree">Πτυχίο — ΕΠΔΟ</div>
+          <div class="edu-institution">Εφαρμογές Πληροφορικής στη Διοίκηση και στην Οικονομία — ΤΕΙ Μεσολογγίου, Σχολή Διοίκησης και Οικονομίας</div>
+          <div class="edu-meta">
+            <span class="edu-grade"><i class="fa-solid fa-star" style="font-size:0.68rem;"></i>Πτυχιακή: 10/10</span>
+          </div>
+          <p class="edu-detail">Πτυχιακή: «Υπηρεσία Βιντεοδιάσκεψης πάνω από Ευρυζωνικά Δίκτυα ΑΤΜ» — μελέτη τηλεματικών υπηρεσιών, τρόπων πρόσβασης (point-to-point / multipoint) και αποδοχής συστημάτων βιντεοδιάσκεψης.</p>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-degree">Δευτεροβάθμια Εκπαίδευση</div>
+          <div class="edu-institution">ΕΠΑΛ &amp; ΤΕΕ</div>
+          <div class="edu-meta">
+            <span class="edu-grade"><i class="fa-solid fa-star" style="font-size:0.68rem;"></i>ΕΠΑΛ: 19,1</span>
+            <span class="edu-grade"><i class="fa-solid fa-star" style="font-size:0.68rem;"></i>ΤΕΕ: 18,3</span>
+          </div>
+          <p class="edu-detail">ΕΠΑΛ — Τομέας Μηχανολογίας, Τεχνικός Οχημάτων · ΤΕΕ — Τμήμα Πληροφορικής.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Πιστοποιήσεις &amp; Μητρώα</span>
+        <h2 class="section-title">Πιστοποιήσεις</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="cert-grid stagger">
+
+        <div class="cert-card">
+          <span class="cert-badge"><i class="fa-solid fa-landmark"></i> ΕΚΔΔΑ</span>
+          <div class="cert-title">Μητρώο Κύριου Διδακτικού Προσωπικού ΕΚΔΔΑ</div>
+          <p class="cert-detail">Εθνικό Κέντρο Δημόσιας Διοίκησης &amp; Αυτοδιοίκησης — κωδικός 029018, αρ. απόφασης Μητρώου 5783/2026.</p>
+          <div class="cert-subjects">
+            <span class="cert-subject">Επιστήμη της Πληροφορικής: εφαρμογές λογισμικού στη δημόσια διοίκηση, ηλεκτρονική διακυβέρνηση, δίκτυα &amp; ασφάλεια, επιστήμη δεδομένων, γλώσσες προγραμματισμού</span>
+            <span class="cert-subject">Εκπαίδευση Ενηλίκων: θεωρίες και προσεγγίσεις, σχεδιασμός &amp; αξιολόγηση εκπαιδευτικών προγραμμάτων, οργάνωση εκπαίδευσης</span>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <span class="cert-badge"><i class="fa-solid fa-circle-check"></i> ΑΣΕΠ</span>
+          <div class="cert-title">Εκπαιδευτικός Πληροφορικής — ΑΣΕΠ</div>
+          <p class="cert-detail">Επιτυχών σε προκήρυξη ΑΣΕΠ για κάλυψη θέσεων μόνιμου εκπαιδευτικού προσωπικού Πληροφορικής (διοριστέος).</p>
+        </div>
+
+        <div class="cert-card">
+          <span class="cert-badge"><i class="fa-solid fa-id-card"></i> ΣΑΕΚ</span>
+          <div class="cert-title">Μητρώο Εκπαιδευτών ΣΑΕΚ</div>
+          <p class="cert-detail">Σχολές Ανώτερης Επαγγελματικής Κατάρτισης (πρώην ΙΕΚ) — γνωστικό αντικείμενο Πληροφορικής.</p>
+        </div>
+
+        <div class="cert-card">
+          <span class="cert-badge"><i class="fa-solid fa-id-card"></i> ΣΔΕ</span>
+          <div class="cert-title">Μητρώο Εκπαιδευτών ΣΔΕ</div>
+          <p class="cert-detail">Σχολεία Δεύτερης Ευκαιρίας — γνωστικό αντικείμενο Πληροφορικής.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Δημοσιεύσεις</span>
+        <h2 class="section-title">Ερευνητική Παραγωγή</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="animate-in">
+        <div class="pub-card">
+          <span class="pub-type"><i class="fa-solid fa-file-lines"></i>&nbsp; Διεθνές Συνέδριο · 2025</span>
+          <div class="pub-title">«Καινοτόμος μετεωρολογικός σταθμός: χρήση τεχνητής νοημοσύνης για εκτίμηση πρόβλεψης πυρκαγιών»</div>
+          <p class="pub-meta">
+            <strong>Γκαναβίας, Θ.</strong> — 10ο Διεθνές Συνέδριο Εκπαιδευτικής Καινοτομίας (ΕΕΠΕΚ),
+            Τόμος Β, Πρακτικά Συνεδρίου, 2025, σελ. 9.
+          </p>
+          <span class="pub-isbn"><i class="fa-solid fa-barcode"></i> ISBN: 978-618-5562-21-2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH INTERESTS -->
+  <section id="research">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Έρευνα</span>
+        <h2 class="section-title">Ερευνητικά Ενδιαφέροντα</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="research-grid stagger">
+        <div class="research-item">
+          <div class="research-num">01</div>
+          <div class="research-title">Μηχανισμοί Κατανομής Πόρων</div>
+          <p class="research-desc">Αποκεντρωμένοι μηχανισμοί και mechanism design με κριτήρια κοινωνικής πρόνοιας (social welfare) και δικαιοσύνης (fairness).</p>
+        </div>
+        <div class="research-item">
+          <div class="research-num">02</div>
+          <div class="research-title">Θεωρία Παιγνίων &amp; Βελτιστοποίηση</div>
+          <p class="research-desc">Θεωρία παιγνίων, βελτιστοποίηση και κατανεμημένοι αλγόριθμοι σε δίκτυα ενέργειας.</p>
+        </div>
+        <div class="research-item">
+          <div class="research-num">03</div>
+          <div class="research-title">Τεχνητή Νοημοσύνη &amp; Περιβάλλον</div>
+          <p class="research-desc">Εφαρμογές AI/ML σε συστήματα περιβαλλοντικής παρακολούθησης και πρόβλεψης κινδύνου πυρκαγιών.</p>
+        </div>
+        <div class="research-item">
+          <div class="research-num">04</div>
+          <div class="research-title">Δίκτυα &amp; Τηλεματική</div>
+          <p class="research-desc">Δίκτυα, ευρυζωνικές τηλεματικές υπηρεσίες και υποδομές επικοινωνιών.</p>
+        </div>
+        <div class="research-item">
+          <div class="research-num">05</div>
+          <div class="research-title">Εκπαιδευτική Τεχνολογία</div>
+          <p class="research-desc">Ψηφιακά εργαλεία και καινοτόμες προσεγγίσεις στη διδασκαλία της Πληροφορικής.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Εμπειρία</span>
+        <h2 class="section-title">Διδακτική &amp; Επαγγελματική Εμπειρία</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="exp-grid">
+
+        <div class="animate-in">
+          <h3 class="exp-section-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-chalkboard-user"></i></div>
+            Διδακτική Εμπειρία
+          </h3>
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <span class="timeline-period current">
+                <i class="fa-solid fa-circle" style="font-size:0.45rem;vertical-align:middle;"></i>
+                2015 – Σήμερα
+              </span>
+              <div class="timeline-title">Καθηγητής Πληροφορικής</div>
+              <div class="timeline-org">Δημόσια Σχολεία Δευτεροβάθμιας Εκπαίδευσης — Υπουργείο Παιδείας</div>
+              <div class="timeline-desc">
+                <p>Διδασκαλία γνωστικού αντικειμένου Πληροφορικής σε μαθητές δευτεροβάθμιας εκπαίδευσης.</p>
+                <p>Συμμετοχή στο έργο «Πιλοτικές Παρεμβάσεις Υποστήριξης Πιστοποίησης Μαθητών Γ΄ Γυμνασίου» (ΚΠπ) 2018–2019, MIS 5032826.</p>
+              </div>
+              <div class="timeline-tags">
+                <span class="tag">Δευτεροβάθμια Εκπαίδευση</span>
+                <span class="tag">Πληροφορική</span>
+                <span class="tag">ΚΠπ</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <span class="timeline-period current">
+                <i class="fa-solid fa-circle" style="font-size:0.45rem;vertical-align:middle;"></i>
+                2015 – Σήμερα
+              </span>
+              <div class="timeline-title">Εκπαιδευτής Ενηλίκων — Πληροφορική</div>
+              <div class="timeline-org">ΣΔΕ · ΣΑΕΚ · ΙΝΕΔΙΒΙΜ</div>
+              <div class="timeline-desc">
+                <p>Σχεδιασμός και υλοποίηση μαθημάτων Πληροφορικής σε προγράμματα μη τυπικής εκπαίδευσης ενηλίκων — πάνω από <strong>1.000 διδακτικές ώρες</strong>.</p>
+                <p>Αντικείμενα: επεξεργασία κειμένου, διαδίκτυο, βασικές και προχωρημένες δεξιότητες πληροφορικής.</p>
+              </div>
+              <div class="timeline-tags">
+                <span class="tag">Εκπαίδευση Ενηλίκων</span>
+                <span class="tag">1.000+ ώρες</span>
+                <span class="tag">ΕΚΔΔΑ</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="animate-in">
+          <h3 class="exp-section-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-briefcase"></i></div>
+            Επαγγελματική Εμπειρία
+          </h3>
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <span class="timeline-period current">
+                <i class="fa-solid fa-circle" style="font-size:0.45rem;vertical-align:middle;"></i>
+                2020 – Σήμερα
+              </span>
+              <div class="timeline-title">Υπάλληλος — ΕΟΔΥ</div>
+              <div class="timeline-org">Εθνικός Οργανισμός Δημόσιας Υγείας — Υπουργείο Υγείας</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-period">2012 – 2019</span>
+              <div class="timeline-title">Επιθεωρητής Πωλήσεων &amp; Διεύθυνση Γραφείου</div>
+              <div class="timeline-org">Ασφαλιστικός Κλάδος — Δυτική Στερεά Ελλάδα</div>
+              <p class="timeline-desc">Διεύθυνση γραφείου, συντονισμός και επιθεώρηση πωλήσεων, ανάλυση πωλήσεων.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-period">2010 – 2011</span>
+              <div class="timeline-title">Υπάλληλος Υποδοχής &amp; Υπεύθυνος Εφαρμογών</div>
+              <div class="timeline-org">Ξενοδοχείο Liberty A.E.</div>
+              <p class="timeline-desc">Διαχείριση οικονομικών και διοικητικών εφαρμογών πληροφορικής για τη λειτουργία της μονάδας.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-period">2008 – 2009</span>
+              <div class="timeline-title">Τεχνικός Δικτύων &amp; Εξυπηρέτηση Πελατών</div>
+              <div class="timeline-org">ΟΤΕ Α.Ε., Μεσολόγγι (πρακτική άσκηση)</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-period">2006 – 2009</span>
+              <div class="timeline-title">Τεχνικός Υπολογιστών &amp; Δικτύων</div>
+              <div class="timeline-org">Οργανισμός Εργατικής Κατοικίας</div>
+              <p class="timeline-desc">Προηγούμενη εμπειρία ως τεχνικός μηχανημάτων laser/κοπτικών.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header animate-in">
+        <span class="section-tag">Δεξιότητες</span>
+        <h2 class="section-title">Τεχνικές Δεξιότητες &amp; Λοιπά</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="skills-grid stagger">
+        <div class="skill-group">
+          <div class="skill-group-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-code"></i></div>
+            Προγραμματισμός
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">C</span>
+            <span class="skill-chip">C++</span>
+            <span class="skill-chip">Java</span>
+            <span class="skill-chip">PHP</span>
+            <span class="skill-chip">SQL</span>
+            <span class="skill-chip">HTML</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-desktop"></i></div>
+            Λειτουργικά Συστήματα
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">Windows</span>
+            <span class="skill-chip">Ubuntu / Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-cubes"></i></div>
+            Εφαρμογές
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">MS Office</span>
+            <span class="skill-chip">LibreOffice</span>
+            <span class="skill-chip">Joomla</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-network-wired"></i></div>
+            Δίκτυα
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">Εγκατάσταση &amp; Διαχείριση</span>
+            <span class="skill-chip">Εξυπηρετητές</span>
+            <span class="skill-chip">Υποστήριξη Δικτύων</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">
+            <div class="icon-box-sm"><i class="fa-solid fa-robot"></i></div>
+            Πεδία Ενδιαφέροντος
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">Τεχνητή Νοημοσύνη</span>
+            <span class="skill-chip">Μηχανική Μάθηση</span>
+            <span class="skill-chip">Εκπαιδευτική Τεχνολογία</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;" class="animate-in">
+        <h3 style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:1.4rem;display:flex;align-items:center;gap:0.5rem;">
+          <div class="icon-box-sm"><i class="fa-solid fa-globe"></i></div>
+          Γλώσσες
+        </h3>
+        <div class="lang-grid">
+          <div class="lang-item">
+            <div class="lang-icon"><i class="fa-solid fa-earth-europe"></i></div>
+            <div>
+              <div class="lang-name">Ελληνικά</div>
+              <div class="lang-level">Μητρική γλώσσα</div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-icon"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <div class="lang-name">Αγγλικά</div>
+              <div class="lang-level">Lower / Proficiency</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-top:2rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;">
+          <div class="icon-box-sm"><i class="fa-solid fa-circle-info"></i></div>
+          Λοιπά Στοιχεία
+        </h3>
+        <div class="other-info">
+          <div class="info-item">
+            <div class="icon-box-sm"><i class="fa-solid fa-car-side"></i></div>
+            <span>Άδεια οδήγησης Ε΄ κατηγορίας φορτηγού και μοτοσικλέτας (απεριόριστα κυβικά)</span>
+          </div>
+          <div class="info-item">
+            <div class="icon-box-sm"><i class="fa-solid fa-shield-halved"></i></div>
+            <span>Στρατιωτικές υποχρεώσεις εκπληρωμένες</span>
+          </div>
+          <div class="info-item">
+            <div class="icon-box-sm"><i class="fa-solid fa-fire"></i></div>
+            <span>Εθελοντής Πυροσβέστης</span>
+          </div>
+          <div class="info-item">
+            <div class="icon-box-sm"><i class="fa-solid fa-volleyball"></i></div>
+            <span>Διαιτητής βόλεϊ · Μέλος αθλητικών και χορευτικών συλλόγων</span>
+          </div>
+          <div class="info-item">
+            <div class="icon-box-sm"><i class="fa-solid fa-motorcycle"></i></div>
+            <span>Διοικητικό μέλος μοτοσικλετιστικής λέσχης</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="section-header">
+            <span class="section-tag">Επικοινωνία</span>
+            <h2 class="section-title">Ας Επικοινωνήσουμε</h2>
+            <div class="section-divider"></div>
+          </div>
+          <p class="contact-desc">
+            Είμαι διαθέσιμος για συνεργασίες στον χώρο της εκπαίδευσης, της δημόσιας διοίκησης
+            και της έρευνας στην Πληροφορική. Μη διστάσετε να επικοινωνήσετε μαζί μου.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:th.ganavias@gmail.com" class="contact-link">
+            <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">th.ganavias@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+306973985859" class="contact-link">
+            <div class="contact-link-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-link-label">Τηλέφωνο</div>
+              <div class="contact-link-value">6973 985 859</div>
+            </div>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="contact-link-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact-link-label">Τοποθεσία</div>
+              <div class="contact-link-value">Μαυροκορδάτου 35, 30200 Μεσολόγγι</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Θεοφάνης Γκαναβίας. Όλα τα δικαιώματα διατηρούνται.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-in, .stagger').forEach(el => observer.observe(el));
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const content = document.querySelector('.hero-content');
+      const photo = document.querySelector('.hero-photo');
+      [content, photo].forEach((el, i) => {
+        if (!el) return;
+        el.style.cssText = `opacity:0;transform:translateY(20px);transition:opacity 0.8s ease ${i*0.16}s,transform 0.8s ease ${i*0.16}s`;
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        [content, photo].forEach(el => {
+          if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+        });
+      }));
+    });
+  </script>
+</body>
+</html>
